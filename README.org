@@ -1,0 +1,47 @@
+#+TITLE: enwc-iwd
+
+[[https://github.com/xFA25E/enwc-iwd/actions/workflows/test.yml/badge.svg]]
+
+[[https://iwd.wiki.kernel.org/][IWD]] backend for [[https://savannah.nongnu.org/p/enwc][ENWC]].
+
+* Usage
+Set ~enwc-default-backend~ to ~iwd~.
+
+* Installation
+
+** Nix
+This repo is a nix flake.  You can just add ~overlays.default~ output to your
+nixpkgs overlays.
+
+#+begin_src nix
+{
+  inputs.enwc-iwd.url = "github:xFA25E/enwc-iwd";
+  outputs = { self, enwc-iwd, nixpkgs }: let
+    pkgs = import nixpkgs {
+      system = "your-system";
+      overlays = [ enwc-iwd.overlays.default ];
+    };
+  in {
+    # YOUR OUTPUTS
+  };
+}
+#+end_src
+
+** Package manager
+If you've installed it with your package manager, you're done.
+
+** Manual
+Install these required packages:
+
++ enwc
+
+Put /enwc-iwd.el/ in your load-path.
+
+* Credits
+This package would not have been possible without the [[https://savannah.nongnu.org/p/enwc][enwc]] package.
+
+* Development
+Bug reports, feature requests, suggestions — oh my!
+
+* License
+GPLv3
